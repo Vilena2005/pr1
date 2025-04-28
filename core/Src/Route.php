@@ -3,6 +3,7 @@
 namespace Src;
 
 use Error;
+use Src\Request;
 
 class Route
 {
@@ -12,6 +13,11 @@ class Route
     public static function setPrefix($value)
     {
         self::$prefix = $value;
+    }
+    public function index(Request $request): string
+    {
+        $posts = Post::where('id', $request->id)->get();
+        return (new View())->render('site.post', ['posts' => $posts]);
     }
 
     public static function add(string $route, array $action): void
@@ -41,7 +47,6 @@ class Route
             throw new Error('This method does not exist');
         }
 
-
-        call_user_func([new $class, $action]);
+        call_user_func([new $class, $action], new Request());
     }
 }
