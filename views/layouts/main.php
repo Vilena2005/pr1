@@ -18,19 +18,21 @@
             <a href="<?= app()->route->getUrl('/login') ?>">Вход</a>
             <a href="<?= app()->route->getUrl('/signup') ?>">Регистрация</a>
         <?php
-        else:
-            ?>
-            <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->name ?>)</a>
+        else:?>
+
+        <a href="<?= app()->route->getUrl('/abonent') ?>">Абоненты</a>
+        <a href="<?= app()->route->getUrl('/division') ?>" >Подразделения</a>
+
+        <a href="<?= app()->route->getUrl('/logout') ?>">Выход</a>
 
         <?php
-        endif;
-        ?>
+        endif;?>
+
     </nav>
 </header>
 <main>
     <?= $content ?? '' ?>
 </main>
-
 </body>
 </html>
 

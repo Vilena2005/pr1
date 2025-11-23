@@ -10,14 +10,27 @@ body {
 a {
     text-decoration: none;
 }
+h2 {
+    text-align: center;
+}
+
 main > form {
-    margin: auto;
+    margin: 0 auto;
 }
 .log-title {
     margin: auto;
     margin-bottom: 10px;
     text-align: center;
 }
+.message {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.text {
+    width: 50%;
+}
+
 .log-form {
     display: flex;
     flex-direction: column;
@@ -49,7 +62,15 @@ button {
     border: transparent;
     border-radius: 10px;
 }
-
+.button-make {
+    width: 160px;
+    color: #6F68EF;
+    padding: 10px 50px;
+    font-size: 16px;
+    border: solid 2px #6F68EF;
+    border-radius: 10px;
+    margin-left: 50px;
+}
 
 .header-nav {
     display: flex;
@@ -67,4 +88,54 @@ button {
     padding: 10px 20px;
     border-radius: 10px;
 }
+.abonents-title {
+    display: flex;
+    justify-content: space-around;
+}
+.table {
+    /*display: flex;*/
+    /*justify-content: space-around;*/
+}
+.main-text {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+.main-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 150px;
+}
+.form-button {
+    width: 30%;
+}
+
+.list-wrap {
+    display: flex;
+    flex-direction: column;
+}
+.list-items {
+    display: flex;
+    flex-direction: column;
+}
+.list-item-title {
+    display: flex;
+}
+.list-item {
+    display: flex;
+}
+.list {
+    width: 300px;
+    margin: 20px 0 20px;
+}
