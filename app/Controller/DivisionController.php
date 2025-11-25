@@ -24,10 +24,27 @@ class DivisionController
         $data = $request->all();
         $errors = [];
 
+        // Проверка полей
         foreach (['division_name', 'division_type'] as $field) {
             if (empty($data[$field])) {
                 $errors[] = "Поле {$field} обязательно для заполнения.";
+            } else {
+                $len = mb_strlen($data[$field]);
+                if ($len < 3) {
+                    $errors[] = "Поле {$field} должно содержать минимум 3 символа.";
+                }
+                if ($len > 255) {
+                    $errors[] = "Поле {$field} должно содержать максимум 255 символов.";
+                }
             }
+        }
+
+        // Если есть ошибки — возвращаем вью с ошибками и не создаём объект
+        if (!empty($errors)) {
+            return new View('site.add-division', [
+                'errors' => $errors,
+                'old' => $data
+            ]);
         }
 
         Division::create([
@@ -35,9 +52,7 @@ class DivisionController
             'division_type' => $data['division_type'],
         ]);
 
-        return new View('site.division', [
-            'divisions'=> Division::all(),
-            'message' => 'Подразделение создано успешно']);
+        return new View('site.add-division', ['message' => 'Подразделение создано']);
     }
 
 }

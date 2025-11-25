@@ -1,5 +1,5 @@
 <div class="main-layout">
-    <a class="button-make" href="<?= app()->route->getUrl('/add-abonent') ?>">Создать</a>
+    <a class="button-make" href="<?= app()->route->getUrl('/add-room') ?>">Создать</a>
     <div class="table">
         <div class="list-wrap">
             <?php if (empty($abonents)): ?>
@@ -25,8 +25,8 @@
                     </div>
                 <?php endforeach; ?>
 
-            <?php endif; ?>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
-</div>
 

@@ -8,17 +8,19 @@
             <?php else: ?>
             <div class="list-items">
                 <div class="list-item-title">
-                    <h3 class="main-title">Вид подразделения</h3>
-                    <h3 class="main-title">Название</h3>
+                    <h3 class="main-title-division-id">ID</h3>
+                    <h3 class="main-title-division">Вид подразделения</h3>
+                    <h3 class="main-title-division">Название</h3>
                 </div>
                     <?php foreach ($divisions as $division): ?>
                         <div class="list-item">
-                            <p class="list"><?=($division->division_name) ?></p>
-                            <p class="list"><?=($division->division_type) ?></p>
+                            <p class="list-division-id"><?=($division->id) ?></p>
+                            <p class="list-division"><?=($division->division_name) ?></p>
+                            <p class="list-division"><?=($division->division_type) ?></p>
                         </div>
                     <?php endforeach; ?>
 
-                <?php endif; ?>
+            <?php endif; ?>
             </div>
 
 

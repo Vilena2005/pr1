@@ -21,9 +21,53 @@ class Site
 
     public function signup(Request $request): string
     {
-        if ($request->method==='POST' && User::create($request->all())){
-            return new View('site.signup', ['message'=>'Вы успешно зарегистрированы']);
+        if ($request->method === 'POST') {
+            $data = $request->all();
+
+            $validator = new \Src\Validator\Validator(
+                $data,
+                [
+                    'name'     => ['required'],
+                    'login'    => ['required', 'unique:users,login'],
+                    'password' => ['required'],
+                ],
+                [
+                    'required' => 'Поле :field пусто',
+                    'unique'   => 'Поле :field должно быть уникальным',
+                ]
+            );
+
+            $passwordValidator = new \Src\Validator\PasswordValidator($data['password'] ?? '');
+
+            if ($validator->fails() || $passwordValidator->fails()) {
+                $errors = $validator->errors();
+
+                if ($passwordValidator->fails()) {
+                    $errors['password'] = array_merge(
+                        $errors['password'] ?? [],
+                        $passwordValidator->errors()
+                    );
+                }
+
+                return new View('site.signup', [
+                    'errors' => $errors,
+                    'old'    => $data,
+                    'message' => 'Проверьте правильность заполнения полей.'
+                ]);
+            }
+
+            $data['password'] = md5($data['password']);
+
+            if (User::create($data)) {
+                app()->route->redirect('/login');
+            }
+
+            return new View('site.signup', [
+                'message' => 'Ошибка при создании пользователя. Попробуйте позже.',
+                'old'     => $data
+            ]);
         }
+
         return new View('site.signup');
     }
 

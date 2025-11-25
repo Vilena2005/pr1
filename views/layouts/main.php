@@ -12,6 +12,7 @@
 <header>
     <nav class="header-nav">
         <a href="<?= app()->route->getUrl('/hello') ?>">Главная</a>
+
         <?php
         if (!app()->auth::check()):
             ?>
@@ -22,6 +23,7 @@
 
         <a href="<?= app()->route->getUrl('/abonent') ?>">Абоненты</a>
         <a href="<?= app()->route->getUrl('/division') ?>" >Подразделения</a>
+        <a href="<?= app()->route->getUrl('/room') ?>" >Помещения</a>
 
         <a href="<?= app()->route->getUrl('/logout') ?>">Выход</a>
 

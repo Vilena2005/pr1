@@ -1,19 +1,13 @@
-<h2>Добавить абонента</h2>
+<h2>Добавить помещение</h2>
 
 <h3 class="message"><?= $message ?? ''; ?></h3>
 
 <form method="post" class="form">
-    <label>Фамилия
-        <input name="surname" type="text">
+    <label>Номер помещения
+        <input name="room_number" type="text">
     </label>
-    <label>
-        Имя<input name="name" type="text">
-    </label>
-    <label>Отчество
-        <input name="patronym" type="text">
-    </label>
-    <label>Дата рождения
-        <input name="birth_date" type="date">
+    <label>Тип помещения
+        <input name="room_type" type="text">
     </label>
 
     <select name="division_id">
@@ -25,8 +19,5 @@
         <?php endforeach; ?>
     </select>
 
-    <label>Номер телефона
-        <input name="phone" type="tel">
-    </label>
     <button class="form-button">Добавить</button>
 </form>

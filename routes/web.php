@@ -15,20 +15,24 @@ Route::add('GET', '/logout', [Controller\Site::class, 'logout']);
 Route::add('GET', '/abonent', [Controller\AbonentController::class, 'index'])
     ->middleware('auth');
 
+//страница Помещения
+Route::add('GET', '/room', [Controller\RoomController::class, 'index_room'])
+    ->middleware('auth');
 
-//Админ
+//страница Подразделения
 Route::add('GET', '/division', [Controller\DivisionController::class, 'division_see'])
     ->middleware('auth');
 
+
+//Админ
     //Создание Подразделения
 Route::add('GET', '/add-division', [Controller\DivisionController::class, 'division_make'])
     ->middleware('auth');
 Route::add('POST', '/add-division', [Controller\DivisionController::class, 'division'])
     ->middleware('auth');
 
-
     //Создание Абонента
 Route::add('GET', '/add-abonent', [Controller\AbonentController::class, 'make'])
     ->middleware('auth');
 Route::add('POST', '/add-abonent', [Controller\AbonentController::class, 'abonent'])
-    ->middleware('auth');;
+    ->middleware('auth');

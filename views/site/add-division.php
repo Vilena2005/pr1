@@ -1,7 +1,7 @@
 <div class="main-layout">
     <h2>Добавить подразделение</h2>
 
-    <h3 class="message"><?= $message ?? ''; ?></h3>
+    <p class="message"><?= $message ?? ''; ?></p>
 
     <?php if (!empty($errors)): ?>
         <div class="alert alert-danger">

@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Model\Abonent;
+use Model\Division;
 use Src\Request;
 use Src\View;
 
@@ -11,7 +12,7 @@ class AbonentController
 {
     public function index (): string
     {
-        return new View('site.abonent');
+        return new View('site.abonent', ['abonents' => Abonent::all() ]);
     }
 //    public function see ()
 //    {
@@ -25,8 +26,13 @@ class AbonentController
 //    }
     public function make (): string
     {
-        return new View('site.add-abonent');
+        $divisions = Division::all();
+        return new View('site.add-abonent', compact('divisions'));
     }
+//    public function make (): string
+//    {
+//        return new View('site.add-abonent');
+//    }
 
     public function abonent (Request $request): string
     {
@@ -58,14 +64,14 @@ class AbonentController
             $properties = [
                 'surname' => trim($data['surname']),
                 'name' => trim($data['name']),
-                'patronymic' => trim($data['patronymic'] ?? ''),
+                'patronym' => trim($data['patronym']),
                 'birth_date' => !empty($data['birth_date']) ? $data['birth_date'] : null,
                 'division_id' => trim($data['division_id'] ?? ''),
                 'phone' => trim($data['phone']),
             ];
 
             if (Abonent::create($properties)) {
-                return redirect('/abonent'); // Перенаправление
+                app()->route->redirect('/abonent'); // Перенаправление
             } else {
                 $errors['general'] = 'Не удалось сохранить абонента';
             }
