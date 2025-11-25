@@ -48,8 +48,8 @@ class DivisionController
         }
 
         Division::create([
-            'division_name' => $data['division_name'],
-            'division_type' => $data['division_type'],
+            'division_name' => trim($data['division_name']),
+            'division_type' => trim($data['division_type']),
         ]);
 
         return new View('site.add-division', ['message' => 'Подразделение создано']);

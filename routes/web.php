@@ -36,3 +36,8 @@ Route::add('GET', '/add-abonent', [Controller\AbonentController::class, 'make'])
     ->middleware('auth');
 Route::add('POST', '/add-abonent', [Controller\AbonentController::class, 'abonent'])
     ->middleware('auth');
+
+Route::add('GET', '/add-room', [Controller\RoomController::class, 'make_room'])
+    ->middleware('auth');
+Route::add('POST', '/add-room', [Controller\RoomController::class, 'room'])
+    ->middleware('auth');

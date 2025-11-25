@@ -42,18 +42,18 @@ main > form {
     width: 30%;
     height: 40vh;
 }
-form > label {
-    width: 70%;
-}
-form > label > input {
-    width: 100%;
-    font-size: 16px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    padding: 10px 20px;
-    border-radius: 10px;
-}
+/*form > label {*/
+/*    width: 70%;*/
+/*}*/
+/*form > label > input {*/
+/*    width: 100%;*/
+/*    font-size: 16px;*/
+/*    box-sizing: border-box;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    padding: 10px 20px;*/
+/*    border-radius: 10px;*/
+/*}*/
 button {
     padding: 10px 50px;
     color: white;
@@ -88,15 +88,7 @@ button {
     padding: 10px 20px;
     border-radius: 10px;
 }
-.list-wrap {
-    display: flex;
-    /*justify-content: center;*/
-    margin-left: 100px;
-}
-.table {
-    /*display: flex;*/
-    /*justify-content: space-around;*/
-}
+
 .main-text {
     display: flex;
     flex-direction: column;
@@ -109,46 +101,50 @@ button {
     gap: 20px;
 }
 
-.form {
+/*форма*/
+.form-wrap {
+    width: 900px;
     display: flex;
     flex-direction: column;
     gap: 50px;
     justify-content: center;
-    align-items: center;
 
     margin-bottom: 150px;
 }
+/*.form-wrap {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 50px;*/
+/*}*/
 .form-button {
     width: 30%;
 }
-
-
-.list-items {
+.add-item {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
-.list-item-title {
-    display: flex;
-    gap: 30px;
-}
-.main-title {
-    display: flex;
-    width: 170px;
-    border-right: 2px black solid;
-}
-.list {
-     /*width: 300px;*/
-     margin: 20px 0 20px;
-     display: flex;
-     width: 170px;
- }
+.add-title {
 
-.main-title-division {
-    display: flex;
-    width: 200px;
-    border-right: 2px black solid;
 }
+.add-phone-input-form {
+    background-color: #E5E5E5;
+    border: transparent;
+    border-radius: 10px;
+    padding: 15px 25px;
+}
+.select-form {
+    width: 100%;
+    font-size: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+/*форма*/
 
+/*форма select*/
 .list-division {
     margin: 20px 0 20px;
     display: flex;
@@ -168,3 +164,60 @@ button {
     display: flex;
     gap: 30px;
 }
+/*форма select*/
+
+
+/*лист с абонентами, подразделенями, помещениями*/
+
+.list-wrap {
+     display: flex;
+     /*justify-content: center;*/
+     margin-left: 100px;
+ }
+.table {
+    /*display: flex;*/
+    /*justify-content: space-around;*/
+}
+.list-items {
+    display: flex;
+    flex-direction: column;
+}
+.list-item-title {
+    display: flex;
+    gap: 30px;
+}
+.main-title {
+    display: flex;
+    width: 170px;
+    border-right: 2px black solid;
+}
+.list {
+     /*width: 300px;*/
+     margin: 20px 0 20px;
+     display: flex;
+     width: 170px;
+ }
+/*лист с абонентами, подразделенями, помещениями*/
+
+
+.main-title-division {
+    display: flex;
+    width: 200px;
+    border-right: 2px black solid;
+}
+
+
+/*ошибки*/
+.errors-wrap {
+    display: flex;
+    justify-content: center;
+}
+.errors {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.error-item {
+    list-style: none;
+}
+/*ошибки*/

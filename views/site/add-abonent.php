@@ -1,22 +1,44 @@
 <h2>Добавить абонента</h2>
 
-<h3 class="message"><?= $message ?? ''; ?></h3>
+<p class="message"><?= $message ?? ''; ?></p>
 
-<form method="post" class="form">
-    <label>Фамилия
-        <input name="surname" type="text">
-    </label>
-    <label>
-        Имя<input name="name" type="text">
-    </label>
-    <label>Отчество
-        <input name="patronym" type="text">
-    </label>
-    <label>Дата рождения
-        <input name="birth_date" type="date">
-    </label>
+<?php if (!empty($errors)): ?>
+    <div class="errors-wrap">
+        <ul class="errors">
+            <?php foreach ($errors as $error): ?>
+                <li class="error-item"><?= ($error) ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
 
-    <select name="division_id">
+<form method="post" class="form-wrap">
+    <div class="add-item">
+        <label class="add-title">Фамилия</label>
+        <input name="surname" type="text" class="add-phone-input-form" placeholder="Фамилия" required>
+    </div>
+
+    <div class="add-item">
+        <label class="add-title">Имя</label>
+        <input name="name" type="text" class="add-phone-input-form" placeholder="Имя" required>
+    </div>
+
+    <div class="add-item">
+        <label class="add-title">Отчество</label>
+        <input name="patronym" type="text" class="add-phone-input-form" placeholder="Отчество">
+    </div>
+
+    <div class="add-item">
+        <label class="add-title">Дата рождения</label>
+        <input name="birth_date" type="date" class="add-phone-input-form" required>
+    </div>
+
+    <div class="add-item">
+        <label class="add-title">Телефон</label>
+        <input name="phone" type="tel" class="add-phone-input-form" placeholder="79008001100" required>
+    </div>
+
+    <select name="division_id" class="select-form">
         <option value="">Без подразделения</option>
         <?php foreach ($divisions as $division): ?>
             <option value="<?= $division->id ?>">
@@ -25,8 +47,5 @@
         <?php endforeach; ?>
     </select>
 
-    <label>Номер телефона
-        <input name="phone" type="tel">
-    </label>
     <button class="form-button">Добавить</button>
 </form>

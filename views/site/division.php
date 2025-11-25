@@ -2,7 +2,6 @@
     <a class="button-make" href="<?= app()->route->getUrl('/add-division') ?>">Создать</a>
     <div class="table">
         <div class="list-wrap">
-
             <?php if (empty($divisions)): ?>
                 <p>Здесь пока ничего нет</p>
             <?php else: ?>
@@ -19,9 +18,9 @@
                             <p class="list-division"><?=($division->division_type) ?></p>
                         </div>
                     <?php endforeach; ?>
-
-            <?php endif; ?>
             </div>
+            <?php endif; ?>
+
 
 
         </div>

@@ -7,6 +7,7 @@
             <?php else: ?>
             <div class="list-items">
                 <div class="list-item-title">
+                    <h3 class="main-title-division-id">ID</h3>
                     <h3 class="main-title">Фамилия</h3>
                     <h3 class="main-title">Имя</h3>
                     <h3 class="main-title">Отчество</h3>
@@ -16,6 +17,7 @@
                 </div>
                 <?php foreach ($abonents as $abonent): ?>
                     <div class="list-item">
+                        <p class="list-division-id"><?=($abonent->id) ?></p>
                         <p class="list"><?=($abonent->surname) ?></p>
                         <p class="list"><?=($abonent->name) ?></p>
                         <p class="list"><?=($abonent->patronym) ?></p>

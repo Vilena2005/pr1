@@ -14,76 +14,50 @@ class AbonentController
     {
         return new View('site.abonent', ['abonents' => Abonent::all() ]);
     }
-//    public function see ()
-//    {
-//        $abonents = Abonent::all();
-//
-//        return new View('site.abonent', [
-//            'abonents' => $abonents,
-//            'errors' => $errors ?? [],
-//            'old' => $data ?? []
-//        ]);
-//    }
+
     public function make (): string
     {
         $divisions = Division::all();
         return new View('site.add-abonent', compact('divisions'));
     }
-//    public function make (): string
-//    {
-//        return new View('site.add-abonent');
-//    }
 
     public function abonent (Request $request): string
     {
-        if ($request->method === 'POST') {
-            $data = $request->all();
+        $data = $request->all();
+        $errors = [];
 
-            // валидация
-            $errors = [];
-
-            if (empty(trim($data['surname'] ?? ''))) {
-                $errors['surname'] = 'Фамилия обязательна';
-            }
-            if (empty(trim($data['name'] ?? ''))) {
-                $errors['name'] = 'Имя обязательно';
-            }
-            if (empty(trim($data['phone'] ?? ''))) {
-                $errors['phone'] = 'Номер телефона обязателен';
-            }
-
-
-            if (!empty($errors)) {
-                return new View('site.abonent', [
-                    'errors' => $errors,
-                    'old' => $data,
-                    'abonents' => Abonent::all()
-                ]);
-            }
-
-            $properties = [
-                'surname' => trim($data['surname']),
-                'name' => trim($data['name']),
-                'patronym' => trim($data['patronym']),
-                'birth_date' => !empty($data['birth_date']) ? $data['birth_date'] : null,
-                'division_id' => trim($data['division_id'] ?? ''),
-                'phone' => trim($data['phone']),
-            ];
-
-            if (Abonent::create($properties)) {
-                app()->route->redirect('/abonent'); // Перенаправление
+        // Проверка полей
+        foreach (['surname', 'name', 'patronym', 'birth_date','phone'] as $field) {
+            if (empty($data[$field])) {
+                $errors[] = "Поле {$field} обязательно для заполнения.";
             } else {
-                $errors['general'] = 'Не удалось сохранить абонента';
+                $len = mb_strlen($data[$field]);
+                if ($len < 3) {
+                    $errors[] = "Поле {$field} должно содержать минимум 3 символа.";
+                }
+                if ($len > 255) {
+                    $errors[] = "Поле {$field} должно содержать максимум 255 символов.";
+                }
             }
         }
 
-        // форма и список
-        $abonents = Abonent::all();
+        // Если есть ошибки — возвращаем вью с ошибками и не создаём объект
+        if (!empty($errors)) {
+            return new View('site.add-abonent', [
+                'errors' => $errors,
+                'old' => $data
+            ]);
+        }
 
-        return new View('site.abonent', [
-            'abonents' => $abonents,
-            'errors' => $errors ?? [],
-            'old' => $data ?? []
+        Abonent::create([
+            'surname' => trim($data['surname']),
+            'name' => trim($data['name']),
+            'patronym' => trim($data['patronym']),
+            'birth_date' => $data['birth_date'],
+            'division_id' => ($data['division_id'] ?? ''),
+            'phone' => trim($data['phone']),
         ]);
+
+        return new View('site.add-abonent', ['message' => 'Абонент создан']);
     }
 }

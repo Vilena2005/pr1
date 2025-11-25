@@ -1,16 +1,29 @@
 <h2>Добавить помещение</h2>
 
-<h3 class="message"><?= $message ?? ''; ?></h3>
+<p class="message"><?= $message ?? ''; ?></p>
 
-<form method="post" class="form">
-    <label>Номер помещения
-        <input name="room_number" type="text">
-    </label>
-    <label>Тип помещения
-        <input name="room_type" type="text">
-    </label>
+<?php if (!empty($errors)): ?>
+    <div class="errors-wrap">
+        <ul class="errors">
+            <?php foreach ($errors as $error): ?>
+                <li class="error-item"><?= ($error) ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
 
-    <select name="division_id">
+<form method="post" class="form-wrap">
+    <div class="add-item">
+        <label class="add-title">Номер помещения</label>
+        <input name="room-number" type="text" class="add-phone-input-form" placeholder="100A" required>
+    </div>
+
+    <div class="add-item">
+        <label class="add-title">Тип помещения</label>
+        <input name="room-type" type="text" class="add-phone-input-form" placeholder="Лаборатория" required>
+    </div>
+
+    <select name="division_id" class="select-form">
         <option value="">Без подразделения</option>
         <?php foreach ($divisions as $division): ?>
             <option value="<?= $division->id ?>">
