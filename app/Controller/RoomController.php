@@ -18,8 +18,8 @@ class RoomController {
 
     public function make_room (): string
     {
-        $rooms = Room::all();
-        return new View('site.add-room', compact('rooms'));
+        $divisions = Division::all();
+        return new View('site.add-room', compact('divisions'));
     }
 
     public function room (Request $request): string
@@ -28,7 +28,7 @@ class RoomController {
         $errors = [];
 
         // Проверка полей
-        foreach (['surname', 'name', 'patronym', 'birth_date','phone'] as $field) {
+        foreach (['room-number', 'room-type'] as $field) {
             if (empty($data[$field])) {
                 $errors[] = "Поле {$field} обязательно для заполнения.";
             } else {
@@ -44,22 +44,19 @@ class RoomController {
 
         // Если есть ошибки — возвращаем вью с ошибками и не создаём объект
         if (!empty($errors)) {
-            return new View('site.add-abonent', [
+            return new View('site.add-room', [
                 'errors' => $errors,
                 'old' => $data
             ]);
         }
 
-        Abonent::create([
-            'surname' => trim($data['surname']),
-            'name' => trim($data['name']),
-            'patronym' => trim($data['patronym']),
-            'birth_date' => $data['birth_date'],
+        Room::create([
+            'room-number' => trim($data['room-number']),
+            'room-type' => trim($data['room-type']),
             'division_id' => ($data['division_id'] ?? ''),
-            'phone' => trim($data['phone']),
         ]);
 
-        return new View('site.add-abonent', ['message' => 'Абонент создан']);
+        return new View('site.add-room', ['message' => 'Помещение создано']);
     }
 
 }

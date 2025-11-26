@@ -31,12 +31,21 @@ Route::add('GET', '/add-division', [Controller\DivisionController::class, 'divis
 Route::add('POST', '/add-division', [Controller\DivisionController::class, 'division'])
     ->middleware('auth');
 
+    //Редактирование Подразделения
+
+
     //Создание Абонента
 Route::add('GET', '/add-abonent', [Controller\AbonentController::class, 'make'])
     ->middleware('auth');
 Route::add('POST', '/add-abonent', [Controller\AbonentController::class, 'abonent'])
     ->middleware('auth');
 
+    //Редактирование Абонента
+Route::add('GET', '/edit-abonent', [Controller\AbonentController::class, 'delete_abonent'])
+    ->middleware('auth');
+
+
+    //Создание помещения
 Route::add('GET', '/add-room', [Controller\RoomController::class, 'make_room'])
     ->middleware('auth');
 Route::add('POST', '/add-room', [Controller\RoomController::class, 'room'])

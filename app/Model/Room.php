@@ -10,7 +10,8 @@ class Room extends Model
     public $timestamps = false;
     protected $fillable = [
         'room_number',
-        'room_type'
+        'room_type',
+        'division_id'
     ];
 
     public function division()

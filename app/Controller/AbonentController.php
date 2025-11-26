@@ -60,4 +60,20 @@ class AbonentController
 
         return new View('site.add-abonent', ['message' => 'Абонент создан']);
     }
+
+    public function delete_abonent (Request $request): string
+    {
+        $data = $request->all();
+        $ids = $data['abonent_ids'] ?? [];
+        $abonents = Abonent::whereIn('id', $ids)->get();
+
+        Abonent::destroy($ids);
+
+        return new View('site/abonent', [
+           'abonents' => Abonent::all(),
+            'message' => 'Абонент удален'
+        ]);
+    }
+
+
 }

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -11,21 +11,20 @@
 <body>
 <header>
     <nav class="header-nav">
-        <a href="<?= app()->route->getUrl('/hello') ?>">Главная</a>
-
         <?php
-        if (!app()->auth::check()):
-            ?>
-            <a href="<?= app()->route->getUrl('/login') ?>">Вход</a>
-            <a href="<?= app()->route->getUrl('/signup') ?>">Регистрация</a>
+        if (!app()->auth::check()): ?>
+
+            <a href="<?= app()->route->getUrl('/login') ?>" class="header-item" >Вход</a>
+            <a href="<?= app()->route->getUrl('/signup') ?>" class="header-item" >Регистрация</a>
         <?php
         else:?>
 
-        <a href="<?= app()->route->getUrl('/abonent') ?>">Абоненты</a>
-        <a href="<?= app()->route->getUrl('/division') ?>" >Подразделения</a>
-        <a href="<?= app()->route->getUrl('/room') ?>" >Помещения</a>
+        <a href="<?= app()->route->getUrl('/hello') ?>" class="header-item" >Главная</a>
+        <a href="<?= app()->route->getUrl('/abonent') ?>" class="header-item" >Абоненты</a>
+        <a href="<?= app()->route->getUrl('/division') ?>" class="header-item" >Подразделения</a>
+        <a href="<?= app()->route->getUrl('/room') ?>" class="header-item" >Помещения</a>
 
-        <a href="<?= app()->route->getUrl('/logout') ?>">Выход</a>
+        <a href="<?= app()->route->getUrl('/logout') ?>" class="button-exit">Выход</a>
 
         <?php
         endif;?>

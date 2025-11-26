@@ -17,12 +17,12 @@
                 </div>
                 <?php foreach ($abonents as $abonent): ?>
                     <div class="list-item">
-                        <p class="list-division-id"><?=($abonent->id) ?></p>
+                        <a href="" class="list-division-id"><?=($abonent->id) ?></a>
                         <p class="list"><?=($abonent->surname) ?></p>
                         <p class="list"><?=($abonent->name) ?></p>
                         <p class="list"><?=($abonent->patronym) ?></p>
                         <p class="list"><?=($abonent->birth_date) ?></p>
-                        <p class="list"><?=($abonent->division->division_name) ?></p>
+                        <p class="list"><?=($abonent->division->division_name ?? 'Без подразделения') ?></p>
                         <p class="list"><?=($abonent->phone) ?></p>
                     </div>
                 <?php endforeach; ?>

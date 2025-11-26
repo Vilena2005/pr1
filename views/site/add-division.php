@@ -16,12 +16,12 @@
 <form method="post" class="form-wrap">
     <div class="add-item">
         <label class="add-title">Название подразделения</label>
-        <input name="division_name" type="text" class="add-phone-input-form" placeholder="Сборочный цех" required>
+        <input name="division_name" type="text" class="add-input-form" placeholder="Сборочный цех" required>
     </div>
 
     <div class="add-item">
         <label class="add-title">Вид подразделения</label>
-        <input name="division_type" type="text" class="add-phone-input-form" placeholder="Производственный отдел" required>
+        <input name="division_type" type="text" class="add-input-form" placeholder="Производственный отдел" required>
     </div>
 
     <button class="form-button">Добавить</button>
