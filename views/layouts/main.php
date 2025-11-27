@@ -19,6 +19,10 @@
         <?php
         else:?>
 
+        <?php if (app()->auth::user()->isAdmin()): ?>
+            <p class="admin">Администратор</p>
+        <?php endif; ?>
+
         <a href="<?= app()->route->getUrl('/hello') ?>" class="header-item" >Главная</a>
         <a href="<?= app()->route->getUrl('/abonent') ?>" class="header-item" >Абоненты</a>
         <a href="<?= app()->route->getUrl('/division') ?>" class="header-item" >Подразделения</a>

@@ -1,7 +1,6 @@
 <h2 class="log-title">Вход</h2>
 <h3 class="message"><?= $message ?? ''; ?></h3>
 
-<h3><?= app()->auth->user()->name ?? ''; ?></h3>
 
 <?php if (!app()->auth::check()): ?>
     <form method="post" class="log-form">

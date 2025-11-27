@@ -97,6 +97,9 @@ button {
     flex-direction: column;
     gap: 20px;
 }
+.admin {
+    color: white;
+}
 
 /*форма*/
 .form-wrap {

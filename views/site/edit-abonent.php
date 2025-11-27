@@ -3,51 +3,45 @@
 <p class="message"><?= $message ?? ''; ?></p>
 
 <?php if (!empty($errors)): ?>
-    <div class="errors-wrap">
-        <ul class="errors">
-            <?php foreach ($errors as $error): ?>
-                <li class="error-item"><?= ($error) ?></li>
-            <?php endforeach; ?>
-        </ul>
+    <div class="alert alert-danger">
+        <ul><?php foreach ($errors as $error): ?><li><?= htmlspecialchars($error) ?></li><?php endforeach; ?></ul>
     </div>
 <?php endif; ?>
 
-<form method="post" class="form-wrap" action="/abonents/edit/<?= $abonent->id ?>">
-    <div class="add-item">
-        <label class="add-title">Фамилия</label>
-        <input name="surname" type="text" class="add-input-form" placeholder="Фамилия" value="<?= htmlspecialchars($abonent->surname ?? '') ?>" required>
+<?php //if (!empty($message)): ?>
+<!--    <div class="alert alert-success">--><?php //= htmlspecialchars($message) ?><!--</div>-->
+<?php //endif; ?>
 
-    </div>
+<!--<form method="POST" action="/edit-abonent/--><?php //= $abonent->id ?><!--">-->
+<!--    <label>Фамилия</label>-->
+<!--    <input type="text" name="surname" value="--><?php //= htmlspecialchars($abonent->surname ?? '') ?><!--" required>-->
+<!---->
+<!--    <label>Имя</label>-->
+<!--    <input type="text" name="name" value="--><?php //= htmlspecialchars($abonent->name ?? '') ?><!--" required>-->
+<!---->
+<!--    <label>Отчество</label>-->
+<!--    <input type="text" name="patronym" value="--><?php //= htmlspecialchars($abonent->patronym ?? '') ?><!--">-->
+<!---->
+<!--    <label>Дата рождения</label>-->
+<!--    <input type="date" name="birth_date" value="--><?php //= htmlspecialchars($abonent->birth_date ?? '') ?><!--" required>-->
+<!---->
+<!--    <label>Телефон</label>-->
+<!--    <input type="text" name="phone" value="--><?php //= htmlspecialchars($abonent->phone ?? '') ?><!--" required>-->
+<!---->
+<!--    <label>Подразделение</label>-->
+<!--    <select name="division_id">-->
+<!--        <option value="">Без подразделения</option>-->
+<!--        --><?php //foreach ($divisions as $division): ?>
+<!--            <option value="--><?php //= $division->id ?><!--" --><?php //= ($abonent->division_id == $division->id) ? 'selected' : '' ?><!-->-->
+<!--                --><?php //= htmlspecialchars($division->division_name) ?>
+<!--            </option>-->
+<!--        --><?php //endforeach; ?>
+<!--    </select>-->
+<!---->
+<!--    <button type="submit">Сохранить изменения</button>-->
+<!--</form>-->
 
-    <div class="add-item">
-        <label class="add-title">Имя</label>
-        <input name="name" type="text" class="add-input-form" placeholder="Имя" required>
-    </div>
-
-    <div class="add-item">
-        <label class="add-title">Отчество</label>
-        <input name="patronym" type="text" class="add-input-form" placeholder="Отчество">
-    </div>
-
-    <div class="add-item">
-        <label class="add-title">Дата рождения</label>
-        <input name="birth_date" type="date" class="add-input-form" required>
-    </div>
-
-    <div class="add-item">
-        <label class="add-title">Телефон</label>
-        <input name="phone" type="tel" class="add-input-form" placeholder="79008001100" required>
-    </div>
-
-    <select name="division_id" class="select-form">
-        <option value="">Без подразделения</option>
-        <?php foreach ($divisions as $division): ?>
-            <option value="<?= $division->id ?>">
-                <?= htmlspecialchars($division->division_name) ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
-
-    <button type="submit" name="action" value="update">Редактировать</button>
-    <button type="submit" name="action" value="delete" onclick="return confirm('Удалить этого абонента?')">Удалить</button>
+<form method="POST" action="/edit-abonent/<?= $abonent->id ?>/delete"
+      onsubmit="return confirm('Удалить абонента?')">
+    <button type="submit">Удалить абонента</button>
 </form>

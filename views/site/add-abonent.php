@@ -39,7 +39,6 @@
     </div>
 
     <select name="division_id" class="select-form">
-        <option value="">Без подразделения</option>
         <?php foreach ($divisions as $division): ?>
             <option value="<?= $division->id ?>">
                 <?= htmlspecialchars($division->division_name) ?>

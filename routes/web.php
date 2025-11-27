@@ -41,9 +41,17 @@ Route::add('POST', '/add-abonent', [Controller\AbonentController::class, 'abonen
     ->middleware('auth');
 
     //Редактирование Абонента
-Route::add('GET', '/abonent/{id}/edit', [Controller\AbonentController::class, 'edit_abonent'])
+Route::add('GET', '/edit-abonent/{id}', [Controller\AbonentController::class, 'edit'])
     ->middleware('auth');
-Route::add('POST', '/abonent/{id}/edit', [Controller\AbonentController::class, 'edit'])
+//Route::add('POST', '/edit-abonent/{id}', [Controller\AbonentController::class, 'update'])
+//    ->middleware('auth');
+
+// Удаление абонента
+Route::add('POST', '/edit-abonent/{id}/delete', [Controller\AbonentController::class, 'delete'])
+    ->middleware('auth');
+
+
+Route::add('POST', '/edit-abonent', [Controller\AbonentController::class, 'delete'])
     ->middleware('auth');
 
 

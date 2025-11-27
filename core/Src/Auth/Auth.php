@@ -2,6 +2,7 @@
 
 namespace Src\Auth;
 
+use Model\User;
 use Src\Session;
 
 class Auth
@@ -56,6 +57,14 @@ class Auth
     {
         Session::clear('id');
         return true;
+    }
+
+    public static function generateToken(User $user): string
+    {
+        $token = bin2hex(random_bytes(30));
+        $user->api_token = $token;
+        $user->save(); // сохраняем в БД
+        return $token;
     }
 
 }

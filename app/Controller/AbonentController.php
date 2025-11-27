@@ -61,78 +61,84 @@ class AbonentController
         return new View('site.add-abonent', ['message' => 'Абонент создан']);
     }
 
-    public function edit_abonent (): string
+//    public function edit_abonent (): string
+//    {
+//        $divisions = Division::all();
+//        return new View('site.edit-abonent', compact('divisions'));
+//    }
+
+    public function edit(int $id): string
     {
+//        $abonent = Abonent::find($id);
+//        if (!$abonent) {
+//            return new View('site.abonent', ['message' => 'Абонент не найден']);
+//        }
+
         $divisions = Division::all();
-        return new View('site.edit-abonent', compact('divisions'));
+        return new View('site/edit-abonent', compact('divisions'));
     }
 
-    public function edit (Request $request, int $id): string
+
+//    public function update(int $id, Request $request): string
+//    {
+//        $abonent = Abonent::find($id);
+//        if (!$abonent) {
+//            return new View('site.abonent', ['message' => 'Абонент не найден']);
+//        }
+//
+//        $data = $request->all();
+//        $errors = [];
+//
+//        // Валидация
+//        foreach (['surname', 'name', 'patronym', 'birth_date', 'phone'] as $field) {
+//            if (empty($data[$field])) {
+//                $errors[] = "Поле {$field} обязательно для заполнения.";
+//            } else {
+//                $len = mb_strlen($data[$field]);
+//                if ($len < 3) {
+//                    $errors[] = "Поле {$field} должно содержать минимум 3 символа.";
+//                }
+//                if ($len > 255) {
+//                    $errors[] = "Поле {$field} должно содержать максимум 255 символов.";
+//                }
+//            }
+//        }
+//
+//        if (!empty($errors)) {
+//            $divisions = Division::all();
+//            return new View('site.edit_abonent', [
+//                'errors' => $errors,
+//                'abonent' => (object) $data,
+//                'divisions' => $divisions
+//            ]);
+//        }
+//
+//        $abonent->update([
+//            'surname' => trim($data['surname']),
+//            'name' => trim($data['name']),
+//            'patronym' => trim($data['patronym']),
+//            'birth_date' => $data['birth_date'],
+//            'division_id' => $data['division_id'] ?? null,
+//            'phone' => trim($data['phone']),
+//        ]);
+//
+//        $divisions = Division::all();
+//        return new View('site.abonent', [
+//            'message' => 'Абонент обновлён',
+//            'abonent' => $abonent,
+//            'divisions' => $divisions
+//        ]);
+//    }
+
+    public function delete(int $id, Request $request): void
     {
         $abonent = Abonent::find($id);
-        if (!$abonent) {
-            return new View('site.abonent', ['message' => 'Абонент не найден']);
+        if ($abonent) {
+            $abonent->delete();
         }
 
-        if ($request->method() === 'POST') {
-            if ($request->get('action') === 'delete') {
-                // Удаляем абонента
-                $abonent->delete();
-
-                // Редирект или отображение сообщения после удаления
-                app()->route->redirect('/abonent');
-            }
-
-            // Если это обновление (редактирование)
-            $data = $request->all();
-            $errors = [];
-
-            // Валидация
-            foreach (['surname', 'name', 'patronym', 'birth_date', 'phone'] as $field) {
-                if (empty($data[$field])) {
-                    $errors[] = "Поле {$field} обязательно для заполнения.";
-                } else {
-                    $len = mb_strlen($data[$field]);
-                    if ($len < 3) {
-                        $errors[] = "Поле {$field} должно содержать минимум 3 символа.";
-                    }
-                    if ($len > 255) {
-                        $errors[] = "Поле {$field} должно содержать максимум 255 символов.";
-                    }
-                }
-            }
-
-            if (!empty($errors)) {
-                return new View('site.edit-abonent', [
-                    'errors' => $errors,
-                    'abonent' => (object) $data,
-                    'divisions' => Division::all()
-                ]);
-            }
-
-            // Обновление данных
-            $abonent->update([
-                'surname' => trim($data['surname']),
-                'name' => trim($data['name']),
-                'patronym' => trim($data['patronym']),
-                'birth_date' => $data['birth_date'],
-                'division_id' => ($data['division_id'] ?? null) ?: null,
-                'phone' => trim($data['phone']),
-            ]);
-
-            return new View('site.edit-abonent', [
-                'message' => 'Абонент обновлён',
-                'abonent' => $abonent,
-                'divisions' => Division::all()
-            ]);
-        }
-
-        // просто показываем форму с данными абонента
-//        return new View('site.edit-abonent', [
-//            'abonent' => $abonent,
-//            'divisions' => Division::all(),
-//            'message' => '',
-//        ]);
+        header('Location: /abonent');
+        exit;
     }
 
 
