@@ -1,5 +1,9 @@
 <div class="main-layout">
-    <a class="button-make" href="<?= app()->route->getUrl('/add-division') ?>">Создать</a>
+
+    <?php if (app()->auth::user()->isAdmin()): ?>
+        <a class="button-make" href="<?= app()->route->getUrl('/add-division') ?>">Создать</a>
+    <?php endif; ?>
+
     <div class="table">
         <div class="list-wrap">
             <?php if (empty($divisions)): ?>

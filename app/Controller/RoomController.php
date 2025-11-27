@@ -28,7 +28,7 @@ class RoomController {
         $errors = [];
 
         // Проверка полей
-        foreach (['room-number', 'room-type'] as $field) {
+        foreach (['room_number', 'room_type'] as $field) {
             if (empty($data[$field])) {
                 $errors[] = "Поле {$field} обязательно для заполнения.";
             } else {
@@ -51,8 +51,8 @@ class RoomController {
         }
 
         Room::create([
-            'room-number' => trim($data['room-number']),
-            'room-type' => trim($data['room-type']),
+            'room_number' => trim($data['room_number']),
+            'room_type' => trim($data['room_type']),
             'division_id' => ($data['division_id'] ?? ''),
         ]);
 

@@ -3,7 +3,7 @@
 
 <form method="post" class="log-form">
     <div class="add-item">
-        <label>Логин</label>
+        <label>Имя</label>
         <input type="text" name="name" class="add-input-form" placeholder="Введите имя">
     </div>
 

@@ -1,5 +1,9 @@
 <div class="main-layout">
-<a class="button-make" href="<?= app()->route->getUrl('/add-room') ?>">Создать</a>
+
+<?php if (app()->auth::user()->isAdmin()): ?>
+    <a class="button-make" href="<?= app()->route->getUrl('/add-room') ?>">Создать</a>
+<?php endif; ?>
+
 <div class="table">
     <div class="list-wrap">
         <?php if (empty($rooms)): ?>
@@ -15,7 +19,7 @@
                 <div class="list-item">
                     <p class="list"><?=($room->room_number) ?></p>
                     <p class="list"><?=($room->room_type) ?></p>
-                    <p class="list"><?=($room->division->divisionname ?? 'Без подразделения') ?></p>
+                    <p class="list"><?=($room->division->division_name ?? 'Без подразделения') ?></p>
                 </div>
             <?php endforeach; ?>
         </div>

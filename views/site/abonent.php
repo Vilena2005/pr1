@@ -1,5 +1,9 @@
 <div class="main-layout">
-    <a class="button-make" href="<?= app()->route->getUrl('/add-abonent') ?>">Создать</a>
+
+    <?php if (app()->auth::user()->isAdmin()): ?>
+        <a class="button-make" href="<?= app()->route->getUrl('/add-abonent') ?>">Создать</a>
+    <?php endif; ?>
+
     <div class="table">
         <div class="list-wrap">
             <?php if (empty($abonents)): ?>
@@ -17,7 +21,10 @@
                 </div>
                 <?php foreach ($abonents as $abonent): ?>
                     <div class="list-item">
-                        <a href="" class="list-division-id"><?=($abonent->id) ?></a>
+                        <a href="<?= app()->route->getUrl('/abonent/edit/' . $abonent->id) ?>"
+                           class="list-division-id">
+                            <?=($abonent->id) ?>
+                        </a>
                         <p class="list"><?=($abonent->surname) ?></p>
                         <p class="list"><?=($abonent->name) ?></p>
                         <p class="list"><?=($abonent->patronym) ?></p>

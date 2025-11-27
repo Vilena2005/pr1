@@ -36,12 +36,14 @@ Route::add('POST', '/add-division', [Controller\DivisionController::class, 'divi
 
     //Создание Абонента
 Route::add('GET', '/add-abonent', [Controller\AbonentController::class, 'make'])
-    ->middleware('auth');
+    ->middleware('role:admin');
 Route::add('POST', '/add-abonent', [Controller\AbonentController::class, 'abonent'])
-    ->middleware('auth');
+    ->middleware('role:admin');
 
     //Редактирование Абонента
-Route::add('GET', '/edit-abonent', [Controller\AbonentController::class, 'delete_abonent'])
+Route::add('GET', '/abonent/edit/{id}', [Controller\AbonentController::class, 'edit_abonent'])
+    ->middleware('auth');
+Route::add('POST', '/abonent/edit/{id}', [Controller\AbonentController::class, 'edit'])
     ->middleware('auth');
 
 

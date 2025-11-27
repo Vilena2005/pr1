@@ -15,12 +15,12 @@
 <form method="post" class="form-wrap">
     <div class="add-item">
         <label class="add-title">Номер помещения</label>
-        <input name="room-number" type="text" class="add-input-form" placeholder="100A" required>
+        <input name="room_number" type="text" class="add-input-form" placeholder="100A" required>
     </div>
 
     <div class="add-item">
         <label class="add-title">Тип помещения</label>
-        <input name="room-type" type="text" class="add-input-form" placeholder="Лаборатория" required>
+        <input name="room_type" type="text" class="add-input-form" placeholder="Лаборатория" required>
     </div>
 
     <select name="division_id" class="select-form">
