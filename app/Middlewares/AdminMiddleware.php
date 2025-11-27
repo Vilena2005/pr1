@@ -7,20 +7,14 @@ use Src\Response;
 
 class AdminMiddleware
 {
-//    public function handle()
-//    {
-//        if (Auth::role() !== 3)
-//            app()->route->redirect("/login");
-//    }
-
     public function handle($request): ?object
     {
         $user = Auth::user();
 
-        if (!$user || $user->role !== 3) {
+        if (!$user || $user->role !== 'admin') {
             (new Response([
                 'status' => 'error',
-                'message' => 'Доступ запрещен. Только администраторы могут выполнять это действие.'
+                'message' => 'Доступ запрещен.'
             ]))->json(403);
             exit;
         }

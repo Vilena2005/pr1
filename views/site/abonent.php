@@ -21,10 +21,9 @@
                 </div>
                 <?php foreach ($abonents as $abonent): ?>
                     <div class="list-item">
-                        <a href="<?= app()->route->getUrl('/abonent/edit/' . $abonent->id) ?>"
+                        <a href="<?= app()->route->getUrl('/abonent/{id}/edit') ?>"
                            class="list-division-id">
-                            <?=($abonent->id) ?>
-                        </a>
+                            <?=($abonent->id) ?></a>
                         <p class="list"><?=($abonent->surname) ?></p>
                         <p class="list"><?=($abonent->name) ?></p>
                         <p class="list"><?=($abonent->patronym) ?></p>
