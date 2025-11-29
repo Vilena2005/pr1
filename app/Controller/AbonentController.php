@@ -61,13 +61,13 @@ class AbonentController
     }
 
 
-    public function deleteList(): string
+    public function abonentDeleteList(): string
     {
         $abonents = Abonent::all();
         return new View('site.abonents-delete', ['abonents' => $abonents]);
     }
 
-    public function deleteSelected(Request $request): string
+    public function abonentDeleteSelected(Request $request): string
     {
         $selectedIds = $request->get('ids', []);
         $deletedCount = 0;

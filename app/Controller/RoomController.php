@@ -59,4 +59,44 @@ class RoomController {
         return new View('site.add-room', ['message' => 'Помещение создано']);
     }
 
+    public function roomDeleteList(): string
+    {
+        $rooms = Room::all();
+        return new View('site.rooms-delete', ['rooms' => $rooms]);
+    }
+
+    public function roomDeleteSelected(Request $request): string
+    {
+        $selectedIds = $request->get('ids', []);
+        $deletedCount = 0;
+        $errors = [];
+
+        if (!empty($selectedIds) && is_array($selectedIds)) {
+            foreach ($selectedIds as $id) {
+                $room = Room::find($id);
+                if ($room) {
+                    $room->delete();
+                    $deletedCount++;
+                } else {
+                    $errors[] = "Помещение с ID {$id} не найден";
+                }
+            }
+        }
+
+        $rooms = Room::all();
+
+        if (!empty($errors)) {
+            return new View('site.rooms-delete', [
+                'rooms' => $rooms,
+                'errors' => $errors,
+                'message' => "Помещения удалены"
+            ]);
+        }
+
+        return new View('site.rooms-delete', [
+            'rooms' => $rooms,
+            'message' => "Помещения успешно удалены"
+        ]);
+    }
+
 }

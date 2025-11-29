@@ -25,8 +25,7 @@
                     </div>
                     <?php foreach ($abonents as $abonent): ?>
                         <div class="list-item">
-                            <a href="<?= app()->route->getUrl('/edit-abonent/' . $abonent->id) ?>" class="list-division-id"> <?=($abonent->id) ?></a>
-
+                            <p class="list-division-id"> <?=($abonent->id) ?></p>
                             <p class="list"><?=($abonent->surname) ?></p>
                             <p class="list"><?=($abonent->name) ?></p>
                             <p class="list"><?=($abonent->patronym) ?></p>

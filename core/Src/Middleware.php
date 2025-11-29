@@ -54,4 +54,6 @@ class Middleware
         $dispatcherMiddleware = new Dispatcher($this->middlewareCollector->getData());
         return $dispatcherMiddleware->dispatch($httpMethod, $uri)[1] ?? [];
     }
+
+
 }

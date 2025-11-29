@@ -12,31 +12,30 @@
     </div>
 <?php endif; ?>
 
-<?php if (empty($abonents)): ?>
+<?php if (empty($rooms)): ?>
     <p class="empty-text">Помещений для удаления нет</p>
 <?php else: ?>
-    <form method="POST" action="<?= app()->route->getUrl('/abonents/delete-selected') ?>">
+    <form method="POST" action="<?= app()->route->getUrl('/rooms/delete-selected') ?>">
         <div class="table">
             <div class="list-wrap">
                 <div class="list-items">
-
                     <div class="list-item-title">
                         <h3 class="main-title-checkbox">Выбрать</h3>
                         <h3 class="main-title-division-id">ID</h3>
-                        <h3 class="main-title">Фамилия</h3>
-                        <h3 class="main-title">Имя</h3>
+                        <h3 class="main-title">Номер помещения</h3>
+                        <h3 class="main-title">Тип помещения</h3>
                         <h3 class="main-title">Подразделение</h3>
                     </div>
 
-                    <?php foreach ($abonents as $abonent): ?>
+                    <?php foreach ($rooms as $room): ?>
                         <div class="list-item">
                             <label class="checkbox-wrap">
-                                <input type="checkbox" name="ids[]" value="<?= $abonent->id ?>">
+                                <input type="checkbox" name="ids[]" value="<?= $room->id ?>">
                             </label>
-                            <p class="list-division-id"><?= $abonent->id ?></p>
-                            <p class="list"><?= htmlspecialchars($abonent->surname) ?></p>
-                            <p class="list"><?= htmlspecialchars($abonent->name) ?></p>
-                            <p class="list"><?= htmlspecialchars($abonent->division->division_name ?? 'Без подразделения') ?></p>
+                            <p class="list-division-id"><?=($room->id) ?></p>
+                            <p class="list"><?=($room->room_number) ?></p>
+                            <p class="list"><?=($room->room_type) ?></p>
+                            <p class="list"><?=($room->division->division_name ?? 'Без подразделения') ?></p>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -45,7 +44,7 @@
 
         <div class="admin-buttons">
             <button type="submit" class="button-delete">Удалить выбранных</button>
-            <a href="<?= app()->route->getUrl('/abonent') ?>">Назад к списку</a>
+            <a href="<?= app()->route->getUrl('/room') ?>">Назад к списку</a>
         </div>
     </form>
 <?php endif; ?>
