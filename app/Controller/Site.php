@@ -19,6 +19,7 @@ class Site
         return new View('site.hello', ['message' => 'Вы успешно вошли']);
     }
 
+
     public function signup(Request $request): string
     {
         if ($request->method === 'POST') {
@@ -49,10 +50,16 @@ class Site
                     );
                 }
 
+                $message = 'Проверьте правильность заполнения полей.';
+
+                if (isset($errors['login'])) {
+                    $message = 'Неподходящий логин';
+                }
+
                 return new View('site.signup', [
                     'errors' => $errors,
                     'old'    => $data,
-                    'message' => 'Проверьте правильность заполнения полей.'
+                    'message' => $message,
                 ]);
             }
 

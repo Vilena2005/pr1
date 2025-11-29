@@ -13,6 +13,7 @@
 <?php endif; ?>
 
 <form method="post" class="form-wrap">
+    <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
     <div class="add-item">
         <label class="add-title">Номер помещения</label>
         <input name="room_number" type="text" class="add-input-form" placeholder="100A" required>

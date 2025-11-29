@@ -40,8 +40,7 @@ class AbonentController
                 }
             }
         }
-
-        // Если есть ошибки — возвращаем вью с ошибками и не создаём объект
+        //Возврат при ошибке
         if (!empty($errors)) {
             return new View('site.add-abonent', [
                 'errors' => $errors,
@@ -61,84 +60,45 @@ class AbonentController
         return new View('site.add-abonent', ['message' => 'Абонент создан']);
     }
 
-//    public function edit_abonent (): string
-//    {
-//        $divisions = Division::all();
-//        return new View('site.edit-abonent', compact('divisions'));
-//    }
 
-    public function edit(int $id): string
+    public function deleteList(): string
     {
-//        $abonent = Abonent::find($id);
-//        if (!$abonent) {
-//            return new View('site.abonent', ['message' => 'Абонент не найден']);
-//        }
-
-        $divisions = Division::all();
-        return new View('site/edit-abonent', compact('divisions'));
+        $abonents = Abonent::all();
+        return new View('site.abonents-delete', ['abonents' => $abonents]);
     }
 
-
-//    public function update(int $id, Request $request): string
-//    {
-//        $abonent = Abonent::find($id);
-//        if (!$abonent) {
-//            return new View('site.abonent', ['message' => 'Абонент не найден']);
-//        }
-//
-//        $data = $request->all();
-//        $errors = [];
-//
-//        // Валидация
-//        foreach (['surname', 'name', 'patronym', 'birth_date', 'phone'] as $field) {
-//            if (empty($data[$field])) {
-//                $errors[] = "Поле {$field} обязательно для заполнения.";
-//            } else {
-//                $len = mb_strlen($data[$field]);
-//                if ($len < 3) {
-//                    $errors[] = "Поле {$field} должно содержать минимум 3 символа.";
-//                }
-//                if ($len > 255) {
-//                    $errors[] = "Поле {$field} должно содержать максимум 255 символов.";
-//                }
-//            }
-//        }
-//
-//        if (!empty($errors)) {
-//            $divisions = Division::all();
-//            return new View('site.edit_abonent', [
-//                'errors' => $errors,
-//                'abonent' => (object) $data,
-//                'divisions' => $divisions
-//            ]);
-//        }
-//
-//        $abonent->update([
-//            'surname' => trim($data['surname']),
-//            'name' => trim($data['name']),
-//            'patronym' => trim($data['patronym']),
-//            'birth_date' => $data['birth_date'],
-//            'division_id' => $data['division_id'] ?? null,
-//            'phone' => trim($data['phone']),
-//        ]);
-//
-//        $divisions = Division::all();
-//        return new View('site.abonent', [
-//            'message' => 'Абонент обновлён',
-//            'abonent' => $abonent,
-//            'divisions' => $divisions
-//        ]);
-//    }
-
-    public function delete(int $id, Request $request): void
+    public function deleteSelected(Request $request): string
     {
-        $abonent = Abonent::find($id);
-        if ($abonent) {
-            $abonent->delete();
+        $selectedIds = $request->get('ids', []);
+        $deletedCount = 0;
+        $errors = [];
+
+        if (!empty($selectedIds) && is_array($selectedIds)) {
+            foreach ($selectedIds as $id) {
+                $abonent = Abonent::find($id);
+                if ($abonent) {
+                    $abonent->delete();
+                    $deletedCount++;
+                } else {
+                    $errors[] = "Абонент с ID {$id} не найден";
+                }
+            }
         }
 
-        header('Location: /abonent');
-        exit;
+        $abonents = Abonent::all();
+
+        if (!empty($errors)) {
+            return new View('site.abonents-delete', [
+                'abonents' => $abonents,
+                'errors' => $errors,
+                'message' => "Абоненты удалены"
+            ]);
+        }
+
+        return new View('site.abonents-delete', [
+            'abonents' => $abonents,
+            'message' => "Абоненты успешно удалены"
+        ]);
     }
 
 

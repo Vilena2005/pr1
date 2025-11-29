@@ -6,6 +6,10 @@ use Src\Route;
 Route::add('GET', '/hello', [Controller\Site::class, 'hello'])
     ->middleware('auth');
 
+//Route::add('GET', '/edit', [Controller\Site::class, 'edit_site'])
+//    ->middleware('auth');
+
+
 //Авторизация и выход
 Route::add(['GET', 'POST'], '/signup', [Controller\Site::class, 'signup']);
 Route::add(['GET', 'POST'], '/login', [Controller\Site::class, 'login']);
@@ -41,18 +45,29 @@ Route::add('POST', '/add-abonent', [Controller\AbonentController::class, 'abonen
     ->middleware('auth');
 
     //Редактирование Абонента
-Route::add('GET', '/edit-abonent/{id}', [Controller\AbonentController::class, 'edit'])
-    ->middleware('auth');
+//Route::add('GET', '/edit-abonent/{id}', [Controller\AbonentController::class, 'edit'])
+//    ->middleware('auth');
 //Route::add('POST', '/edit-abonent/{id}', [Controller\AbonentController::class, 'update'])
 //    ->middleware('auth');
 
 // Удаление абонента
-Route::add('POST', '/edit-abonent/{id}/delete', [Controller\AbonentController::class, 'delete'])
+//Route::add('POST', '/delete-abonent', [Controller\AbonentController::class, 'delete'])
+//    ->middleware('auth');
+//Route::add('POST', '/delete-abonent', [Controller\AbonentController::class, 'deleteSelected'])
+//    ->middleware('auth');
+
+// Маршрут для отображения страницы удаления (список абонентов для выбора)
+Route::add('GET', '/abonents-delete', [Controller\AbonentController::class, 'deleteList'])
+    ->middleware('auth');
+
+// Маршрут для обработки удаления выбранных абонентов
+Route::add('POST', '/abonents/delete-selected', [Controller\AbonentController::class, 'deleteSelected'])
     ->middleware('auth');
 
 
-Route::add('POST', '/edit-abonent', [Controller\AbonentController::class, 'delete'])
-    ->middleware('auth');
+
+//Route::add('POST', '/edit-abonent', [Controller\AbonentController::class, 'delete'])
+//    ->middleware('auth');
 
 
     //Создание помещения

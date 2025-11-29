@@ -13,6 +13,7 @@
 <?php endif; ?>
 
 <form method="post" class="form-wrap">
+    <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
     <div class="add-item">
         <label class="add-title">Фамилия</label>
         <input name="surname" type="text" class="add-input-form" placeholder="Фамилия" required>

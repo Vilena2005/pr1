@@ -4,7 +4,7 @@
 
 <?php if (!app()->auth::check()): ?>
     <form method="post" class="log-form">
-
+        <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
         <div class="add-item">
             <label>Логин</label>
             <input type="text" name="login" class="add-input-form" placeholder="Введите логин">

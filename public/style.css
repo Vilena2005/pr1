@@ -58,7 +58,7 @@ button {
     font-size: 16px;
     border: solid 2px #6F68EF;
     border-radius: 10px;
-    margin-left: 100px;
+    /*margin-left: 100px;*/
 }
 .button-exit {
     background-color: #6F68EF;
@@ -67,6 +67,12 @@ button {
     padding: 10px 20px;
     border: solid 2px white;
     border-radius: 10px;
+}
+.admin-buttons {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-left: 100px;
 }
 
 .header-nav {
@@ -120,9 +126,7 @@ button {
     flex-direction: column;
     gap: 10px;
 }
-.add-title {
 
-}
 .add-input-form {
     background-color: #E5E5E5;
     border: transparent;
@@ -138,7 +142,16 @@ button {
     padding: 10px 20px;
     border-radius: 10px;
 }
+
+.checkbox-wrap {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /*форма*/
+
 
 /*форма select*/
 .list-division {
@@ -149,6 +162,11 @@ button {
 .main-title-division-id {
     display: flex;
     width: 50px;
+    border-right: 2px black solid;
+}
+.main-title-checkbox {
+    display: flex;
+    width: 100px;
     border-right: 2px black solid;
 }
 .list-division-id {
@@ -166,12 +184,8 @@ button {
 /*лист с абонентами, подразделенями, помещениями*/
 .list-wrap {
      display: flex;
-     /*justify-content: center;*/
      margin-left: 100px;
  }
-.table {
-
-}
 .list-items {
     display: flex;
     flex-direction: column;
@@ -186,7 +200,6 @@ button {
     border-right: 2px black solid;
 }
 .list {
-     /*width: 300px;*/
      margin: 20px 0 20px;
      display: flex;
      width: 170px;

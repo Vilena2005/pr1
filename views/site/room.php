@@ -1,7 +1,9 @@
 <div class="main-layout">
 
 <?php if (app()->auth::user()->isAdmin()): ?>
-    <a class="button-make" href="<?= app()->route->getUrl('/add-room') ?>">Создать</a>
+    <div class="admin-buttons">
+        <a class="button-make" href="<?= app()->route->getUrl('/add-room') ?>">Создать</a>
+    </div>
 <?php endif; ?>
 
 <div class="table">
