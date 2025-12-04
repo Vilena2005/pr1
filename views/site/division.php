@@ -3,6 +3,7 @@
     <?php if (app()->auth::user()->isAdmin()): ?>
         <div class="admin-buttons">
             <a class="button-make" href="<?= app()->route->getUrl('/add-division') ?>">Создать</a>
+            <a class="button-make" href="<?= app()->route->getUrl('/divisions-delete') ?>">Удалить</a>
         </div>
     <?php endif; ?>
 

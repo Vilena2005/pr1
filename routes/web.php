@@ -31,10 +31,16 @@ Route::add('GET', '/add-division', [Controller\DivisionController::class, 'divis
 Route::add('POST', '/add-division', [Controller\DivisionController::class, 'division'])
     ->middleware('auth');
 
+//Удаление Подразделения
+Route::add('GET', '/divisions-delete', [Controller\DivisionController::class, 'divisionDeleteList'])
+    ->middleware('auth');
+Route::add('POST', '/divisions/delete-selected', [Controller\DivisionController::class, 'divisionDeleteSelected'])
+    ->middleware('auth');
+
 
     //Создание Абонента
 Route::add('GET', '/add-abonent', [Controller\AbonentController::class, 'make'])
-    ->middleware(['auth']);
+    ->middleware('role:admin');
 Route::add('POST', '/add-abonent', [Controller\AbonentController::class, 'abonent'])
     ->middleware('auth');
 

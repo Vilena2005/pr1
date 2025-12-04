@@ -33,5 +33,8 @@
         <?php endforeach; ?>
     </select>
 
-    <button class="form-button">Добавить</button>
+    <div class="admin-buttons-add">
+        <button class="form-button">Добавить</button>
+        <a href="<?= app()->route->getUrl('/room') ?>">Назад к списку</a>
+    </div>
 </form>

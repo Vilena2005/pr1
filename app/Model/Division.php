@@ -13,4 +13,16 @@ class Division extends Model
         'division_name',
         'division_type'
     ];
+
+
+    public function abonents ()
+    {
+        return $this->hasMany(Abonent::class, 'division_id');
+    }
+
+    public function rooms ()
+    {
+        return $this->hasMany(Room::class, 'division_id');
+    }
+
 }

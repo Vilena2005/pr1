@@ -73,10 +73,13 @@ class RoomController {
 
         if (!empty($selectedIds) && is_array($selectedIds)) {
             foreach ($selectedIds as $id) {
+
                 $room = Room::find($id);
                 if ($room) {
+
                     $room->delete();
                     $deletedCount++;
+
                 } else {
                     $errors[] = "Помещение с ID {$id} не найден";
                 }

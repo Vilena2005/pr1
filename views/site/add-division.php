@@ -25,5 +25,10 @@
         <input name="division_type" type="text" class="add-input-form" placeholder="Производственный отдел" required>
     </div>
 
-    <button class="form-button">Добавить</button>
+
+    <div class="admin-buttons-add">
+        <button class="form-button">Добавить</button>
+        <a href="<?= app()->route->getUrl('/division') ?>">Назад к списку</a>
+    </div>
+
 </form>

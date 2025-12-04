@@ -73,6 +73,11 @@ button {
     gap: 30px;
     margin-left: 100px;
 }
+.admin-buttons-add {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
 
 .header-nav {
     display: flex;
