@@ -3,7 +3,7 @@
 use Src\Route;
 
 //Главная страница
-Route::add('GET', '/hello', [Controller\Site::class, 'hello'])
+Route::add('GET', '/', [Controller\Site::class, 'hello'])
     ->middleware('auth');
 
 //Авторизация и выход
@@ -40,7 +40,7 @@ Route::add('POST', '/divisions/delete-selected', [Controller\DivisionController:
 
     //Создание Абонента
 Route::add('GET', '/add-abonent', [Controller\AbonentController::class, 'make'])
-    ->middleware('role:admin');
+    ->middleware('auth');
 Route::add('POST', '/add-abonent', [Controller\AbonentController::class, 'abonent'])
     ->middleware('auth');
 

@@ -2,15 +2,15 @@
 
 <p class="message"><?= $message ?? ''; ?></p>
 
-<?php if (!empty($errors)): ?>
-    <div class="errors-wrap">
-        <ul class="errors">
-            <?php foreach ($errors as $error): ?>
-                <li class="error-item"><?= ($error) ?></li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-<?php endif; ?>
+<?php //if (!empty($errors)): ?>
+<!--    <div class="errors-wrap">-->
+<!--        <ul class="errors">-->
+<!--            --><?php //foreach ($errors as $error): ?>
+<!--                <li class="error-item">--><?php //= ($error) ?><!--</li>-->
+<!--            --><?php //endforeach; ?>
+<!--        </ul>-->
+<!--    </div>-->
+<?php //endif; ?>
 
 <form method="post" class="form-wrap">
     <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
@@ -38,6 +38,10 @@
         <label class="add-title">Телефон</label>
         <input name="phone" type="tel" class="add-input-form" placeholder="79008001100" required>
     </div>
+
+    <?php if (!empty($errors['phone'])): ?>
+        <p class="error"><?= implode(', ', $errors['phone']) ?></p>
+    <?php endif; ?>
 
     <select name="division_id" class="select-form">
         <?php foreach ($divisions as $division): ?>

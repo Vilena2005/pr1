@@ -9,8 +9,7 @@ use Src\Validator\Validator;
 use Src\View;
 use Model\User;
 use Src\Auth\Auth;
-use Model\Abonent;
-use Model\Admin;
+
 
 class Site
 {
@@ -18,7 +17,6 @@ class Site
     {
         return new View('site.hello', ['message' => 'Вы успешно вошли']);
     }
-
 
     public function signup(Request $request): string
     {
@@ -86,7 +84,7 @@ class Site
         }
         //Если удалось аутентифицировать пользователя, то редирект
         if (Auth::attempt($request->all())) {
-            app()->route->redirect('/hello');
+            app()->route->redirect('/');
         }
         //Если аутентификация не удалась, то сообщение об ошибке
         return new View('site.login', ['message' => 'Неправильные логин или пароль']);
@@ -95,7 +93,7 @@ class Site
     public function logout(): void
     {
         Auth::logout();
-        app()->route->redirect('/hello');
+        app()->route->redirect('/');
     }
 
 

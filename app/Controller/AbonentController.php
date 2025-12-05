@@ -4,6 +4,8 @@ namespace Controller;
 
 use Model\Abonent;
 use Model\Division;
+use Src\Validator\Validator;
+use Src\Validator\PhoneValidator;
 use Src\Request;
 use Src\View;
 
@@ -40,6 +42,39 @@ class AbonentController
                 }
             }
         }
+
+        $validator = new \Src\Validator\Validator(
+            $data,
+            [
+                'phone' => ['required'],
+            ],
+            [
+                'required' => 'Поле :field обязательно для заполнения',
+            ]
+        );
+
+        $phoneValidator = new \Src\Validator\PhoneValidator($data['phone'] ?? '');
+
+        if ($validator->fails() || $phoneValidator->fails()) {
+            $errors = $validator->errors();
+
+            if ($phoneValidator->fails()) {
+                $errors['phone'] = array_merge(
+                    $errors['phone'] ?? [],
+                    $phoneValidator->errors()
+                );
+            }
+
+            return new View('site.add-abonent', [
+                'errors' => $errors,
+                'old'    => $data,
+            ]);
+        }
+
+        // Сохраняем номер
+//        $data['phone'] = $phoneValidator;
+
+
         //Возврат при ошибке
         if (!empty($errors)) {
             return new View('site.add-abonent', [
@@ -54,7 +89,7 @@ class AbonentController
             'patronym' => trim($data['patronym']),
             'birth_date' => $data['birth_date'],
             'division_id' => ($data['division_id'] ?? ''),
-            'phone' => trim($data['phone']),
+            'phone' => ($data['phone']),
         ]);
 
         return new View('site.add-abonent', ['message' => 'Абонент создан']);
